@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\myles\\OneDrive\\Documents\\PLCnext Engineer\\HMI\\PrecisionFullCoilHMI\\PrecisionFullCoilHMI.csproj": {}
+    "C:\\Users\\myles\\OneDrive\\Desktop\\MY WORK FOLDER\\FINAL-PROJECT-HMI\\HMI\\PrecisionFullCoilHMI\\PrecisionFullCoilHMI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\myles\\OneDrive\\Documents\\PLCnext Engineer\\HMI\\PrecisionFullCoilHMI\\PrecisionFullCoilHMI.csproj": {
+    "C:\\Users\\myles\\OneDrive\\Desktop\\MY WORK FOLDER\\FINAL-PROJECT-HMI\\HMI\\PrecisionFullCoilHMI\\PrecisionFullCoilHMI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\myles\\OneDrive\\Documents\\PLCnext Engineer\\HMI\\PrecisionFullCoilHMI\\PrecisionFullCoilHMI.csproj",
+        "projectUniqueName": "C:\\Users\\myles\\OneDrive\\Desktop\\MY WORK FOLDER\\FINAL-PROJECT-HMI\\HMI\\PrecisionFullCoilHMI\\PrecisionFullCoilHMI.csproj",
         "projectName": "PrecisionFullCoilHMI",
-        "projectPath": "C:\\Users\\myles\\OneDrive\\Documents\\PLCnext Engineer\\HMI\\PrecisionFullCoilHMI\\PrecisionFullCoilHMI.csproj",
+        "projectPath": "C:\\Users\\myles\\OneDrive\\Desktop\\MY WORK FOLDER\\FINAL-PROJECT-HMI\\HMI\\PrecisionFullCoilHMI\\PrecisionFullCoilHMI.csproj",
         "packagesPath": "C:\\Users\\myles\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\myles\\OneDrive\\Documents\\PLCnext Engineer\\HMI\\PrecisionFullCoilHMI\\obj\\",
+        "outputPath": "C:\\Users\\myles\\OneDrive\\Desktop\\MY WORK FOLDER\\FINAL-PROJECT-HMI\\HMI\\PrecisionFullCoilHMI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

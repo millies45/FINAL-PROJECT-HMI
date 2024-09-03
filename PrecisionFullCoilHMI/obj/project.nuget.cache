@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "83yFeo7oxv4=",
+  "dgSpecHash": "wkoDMppsEww=",
   "success": true,
-  "projectFilePath": "C:\\Users\\myles\\OneDrive\\Documents\\PLCnext Engineer\\HMI\\PrecisionFullCoilHMI\\PrecisionFullCoilHMI.csproj",
+  "projectFilePath": "C:\\Users\\myles\\OneDrive\\Desktop\\MY WORK FOLDER\\FINAL-PROJECT-HMI\\HMI\\PrecisionFullCoilHMI\\PrecisionFullCoilHMI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\myles\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\myles\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

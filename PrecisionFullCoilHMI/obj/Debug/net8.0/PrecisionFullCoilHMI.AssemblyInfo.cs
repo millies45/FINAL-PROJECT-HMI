@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PrecisionFullCoilHMI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e0e38e20dd2501b574098ed8c66d044485b423c")]
 [assembly: System.Reflection.AssemblyProductAttribute("PrecisionFullCoilHMI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PrecisionFullCoilHMI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
