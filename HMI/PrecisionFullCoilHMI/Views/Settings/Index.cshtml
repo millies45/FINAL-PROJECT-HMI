@@ -1,0 +1,77 @@
+﻿@model IEnumerable<PrecisionFullCoilHMI.Models.Tag>
+
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<h1>Settings</h1>
+
+<p>
+    <button id="refreshButton" class="btn btn-secondary">Refresh</button>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Description</th>
+            <th>Value</th>
+            <th>Unit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.Count(); i++)
+        {
+            var tag = Model.ElementAt(i);
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@tag.Description</td>
+                <td>
+                    @{
+                        var valueType = tag.Value?.GetType();
+                    }
+
+                    @if (valueType == typeof(bool))
+                    {
+                        <select class="form-control value-field" data-id="@tag.Id">
+                            <option value="true" selected="@(tag.Value is true)">True</option>
+                            <option value="false"  selected="@(tag.Value is false)">False</option>
+                        </select>
+                    }
+                    else if (valueType == typeof(float) || valueType == typeof(double))
+                    {
+                        <input type="number" step="0.001" value="@string.Format("{0:0.000}", tag.Value)" class="form-control value-field" data-id="@tag.Id" />
+                    }
+                    else
+                    {
+                        <input type="text" value="@tag.Value" class="form-control value-field" data-id="@tag.Id" />
+                    }
+                </td>
+                <td>@tag.UnitOfMeasurement</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="~/js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#refreshButton').on('click', function () {
+                $.post('@Url.Action("RefreshValues")', function () {
+                    location.reload();
+                });
+            });
+
+            $('.value-field').on('blur', function () {
+                var input = $(this);
+                var id = input.data('id');
+                var newValue = input.val();
+
+                $.post('@Url.Action("UpdateValue")', { id: id, newValue: newValue }, function () {
+                    console.log('Value updated for ID ' + id);
+                });
+            });
+        });
+    </script>
+}

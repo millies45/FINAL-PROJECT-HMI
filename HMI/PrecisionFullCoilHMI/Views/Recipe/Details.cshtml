@@ -1,0 +1,273 @@
+﻿@model PrecisionFullCoilHMI.Models.Recipe
+
+@{
+    ViewData["Title"] = "Recipe Details";
+    var isDarkMode = true; // Change this to toggle between dark and light modes
+}
+
+<h1>@Model.Name</h1>
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="row">
+            <!-- Read-Only Fields -->
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="recipeId" class="small-label">ID</label>
+                    <input type="text" id="recipeId" value="@Model.Id" class="form-control form-control-sm info-input" readonly />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="createdDate" class="small-label">Created Date</label>
+                    <input type="text" id="createdDate" value="@Model.CreatedDate.ToString("yyyy-MM-dd HH:mm")" class="form-control form-control-sm info-input" readonly />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="lastUpdateDate" class="small-label">Last Update</label>
+                    <input type="text" id="lastUpdateDate" value="@Model.LastUpdateDate.ToString("yyyy-MM-dd HH:mm")" class="form-control form-control-sm info-input" readonly />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="userId" class="small-label">User ID</label>
+                    <input type="text" id="userId" value="@Model.UserId" class="form-control form-control-sm info-input" readonly />
+                </div>
+            </div>
+
+            <!-- Editable Fields -->
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="name" class="small-label">Name</label>
+                    <input type="text" id="name" name="Name" value="@Model.Name" class="form-control form-control-sm info-input" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="description" class="small-label">Description</label>
+                    <input type="text" id="description" name="Description" value="@Model.Description" class="form-control form-control-sm info-input" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="numberOfJobs" class="small-label">Number of Jobs</label>
+                    <input type="number" id="numberOfJobs" name="NumberOfJobs" value="@Model.NumberOfJobs" class="form-control form-control-sm info-input" min="1" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button id="confirmChangeJobs" class="btn btn-danger btn-sm mt-4">Change Number of Jobs</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Jobs Table -->
+<div id="jobsTable" style="overflow-x:auto;">
+    <h2>Jobs</h2>
+    <table class="table table-bordered @((isDarkMode ? "table-dark table-hover" : "table-light")) table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <td class="row-header">Parameter</td>
+                @for (int i = 1; i <= Model.NumberOfJobs; i++)
+                {
+                    <th style="min-width: 80px;">@i</th> <!-- Reduced min-width for smaller columns -->
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="row-header">Quantity</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].Quantity" value="@job.Quantity" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Side A</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].SideA" value="@job.SideA" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Side B</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].SideB" value="@job.SideB" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Duct Type</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].DuctType" value="@job.DuctType" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Lock</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].Lock" value="@job.Lock" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Connector</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].Connector" value="@job.Connector" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Cleats</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].Cleats" value="@job.Cleats" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Cleat Edges</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].CleatEdges" value="@job.CleatEdges" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Side A Holes</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].SideAHoles" value="@job.SideAHoles" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Side B Holes</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].SideBHoles" value="@job.SideBHoles" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Hole Die</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].HoleDie" value="@job.HoleDie" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Hole Size</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].HoleSize" value="@job.HoleSize" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Bead</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].Bead" value="@job.Bead" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Insulation</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].Insulation" value="@job.Insulation" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Pin Spacing</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].PinSpacing" value="@job.PinSpacing" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Sealant</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].Sealant" value="@job.Sealant" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+            <tr>
+                <td class="row-header">Gauge</td>
+                @foreach (var job in Model.Jobs)
+                {
+                    <td><input type="number" name="Jobs[@job.JobNumber - 1].Gauge" value="@job.Gauge" class="form-control form-control-sm bold-input" /></td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Additional Styles for Smaller Labels and Bold Inputs -->
+<style>
+    .small-label {
+        font-size: 0.875rem;
+    }
+
+    .bold-input {
+        font-weight: bold;
+        max-width: 70px;
+    }
+    .row-header{
+        min-width: 100px;
+    }
+    /* Enable smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Make the table container touch-friendly */
+    #jobsTable {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Momentum scrolling for iOS */
+        scrollbar-width: thin; /* Firefox */
+    }
+
+        /* Customize scrollbar for WebKit browsers (e.g., Chrome, Safari) */
+        #jobsTable::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        #jobsTable::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        #jobsTable::-webkit-scrollbar-track {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+</style>
+@section Scripts {
+    <script src="~/js/signalr.min.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#confirmChangeJobs').on('click', function () {
+                let newJobCount = $('#numberOfJobs').val();
+
+                if (confirm("Are you sure you want to change the number of jobs to " + newJobCount + "? This action is critical and will add or remove jobs accordingly.")) {
+                    // Send an AJAX request to update the number of jobs
+                    $.ajax({
+                        url: '@Url.Action("UpdateJobCount", "Recipe")', // Adjust the action and controller names as needed
+                        type: 'POST',
+                        data: {
+                            recipeId: '@Model.Id',
+                            newJobCount: newJobCount
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                location.reload(); // Reload the page to reflect changes
+                            } else {
+                                alert("An error occurred while updating the job count.");
+                            }
+                        },
+                        error: function () {
+                            alert("An error occurred while updating the job count.");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Backup & Restore";
+}
+
+<h2>Backup & Restore</h2>
+
+<div class="container">
+    <h3>Export Data</h3>
+    <form asp-action="ExportData" method="post">
+        <div class="form-group">
+            <label for="backupFileName">Enter Backup File Name:</label>
+            <input type="text" id="backupFileName" name="backupFileName" class="form-control" placeholder="mybackup" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Export Data</button>
+    </form>
+
+    <h3>Restore Data</h3>
+    <form asp-action="RestoreData" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="restoreFile">Select Backup File:</label>
+            <input type="file" id="restoreFile" name="restoreFile" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Restore Data</button>
+    </form>
+</div>

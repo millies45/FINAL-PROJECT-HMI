@@ -1,0 +1,113 @@
+﻿@model IEnumerable<PrecisionFullCoilHMI.Models.Tag>
+
+@{
+    ViewData["Title"] = "Maintenance";
+}
+
+<h1>Maintenance View</h1>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Node ID</th>
+                <th>Current Value</th>
+                <th>Action</th>
+                <th>Action1</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tag in Model)
+            {
+                <tr data-name="@tag.Name">
+                    <!-- Changed to data-name -->
+                    <td>@tag.Name</td>
+                    <td>@tag.Description</td>
+                    <td>@tag.NodeId</td>
+                    <td class="real-time-value">Loading...</td>
+                    <td>
+                        @if (tag.MaintenancePurpose == 2) // PB_Maintinance
+                        {
+                            <button class="btn btn-primary jog-button"
+                                    data-nodeid="@tag.NodeId"
+                                    onmousedown="sendJogCommand('@tag.NodeId', true)"
+                                    onmouseup="sendJogCommand('@tag.NodeId', false)">
+                                Jog
+                            </button>
+                        }
+                    </td>
+                    <td>@tag.MaintenancePurpose</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/signalr.min.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            const connection = new signalR.HubConnectionBuilder().withUrl("/realtimehub").build();
+
+            connection.on("UpdateVariable", (variable, value) => {
+                const identifier = variable.identifier;
+                const row = $(`tr[data-name='${identifier}']`);
+
+                if (row.length) {
+                    const currentValueElement = row.find('.real-time-value');
+
+                    // Check if the value is boolean
+                    if (typeof value === 'boolean') {
+                        // Apply font color based on the boolean value
+                        if (value) {
+                            currentValueElement.css('color', 'green');
+                            currentValueElement.text("ON"); // Optional: You can show text like "ON"
+                        } else {
+                            currentValueElement.css('color', 'red');
+                            currentValueElement.text("OFF"); // Optional: You can show text like "OFF"
+                        }
+                    } else {
+                        // If not boolean, reset the font color and update the text
+                        currentValueElement.css('color', ''); // Reset to default color
+                        currentValueElement.text(value);
+                    }
+                } else {
+                    console.warn("No matching row found for identifier:", identifier);
+                }
+            });
+
+            connection.on("ReceiveError", (message) => {
+                console.error("Error received from server:", message);
+            });
+
+            connection.start()
+                .then(() => {
+                    console.log("Connected to the RealTimeHub");
+                })
+                .catch(err => {
+                    console.error("Connection error:", err.toString());
+                });
+        });
+
+        function sendJogCommand(nodeId, jogStatus) {
+            $.ajax({
+                url: '/Maintenance/JogCommand', // Correct endpoint
+                type: 'POST',
+                data: {
+                    nodeId: nodeId,
+                    jogStatus: jogStatus
+                },
+                success: function () {
+                    console.log("Jog command sent successfully:", nodeId, jogStatus);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error sending jog command:", error);
+                }
+            });
+        }
+    </script>
+}

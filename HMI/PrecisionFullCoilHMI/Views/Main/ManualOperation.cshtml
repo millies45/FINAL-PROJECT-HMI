@@ -1,0 +1,426 @@
+﻿@{
+    ViewData["Title"] = "Manual Operation";
+}
+
+<h1>Manual Operation</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Decoiler Group -->
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white">
+                    Decoiler
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Sensors</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="ns=6;s=Arp.Plc.Eclr/DI_DecoilerEmpty">Empty</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="decoilerSelection">Decoiler Selection</label>
+                        <select id="decoilerSelection" class="form-control form-control-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/A_DecoilerSelection">
+                            <option value="0">Decoiler A</option>
+                            <option value="1">Decoiler B</option>
+                            <option value="2">Decoiler C</option>
+                            <option value="3">Decoiler D</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_DecoilerFWD">Forward</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_FeederRWD">Reverse</button>
+
+@*                         <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_DecoilerA">Decoiler A</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_DecoilerB">Decoiler B</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_DecoilerC">Decoiler C</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_DecoilerD">Decoiler D</button> *@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feeder Group -->
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white">
+                    Feeder
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Sensors</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="ns=6;s=Arp.Plc.Eclr/DI_FeederMaterial">Part Present</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="feederPosition">Feeder Position (inch)</label>
+                        <input type="number" id="feederPosition" class="form-control form-control-sm bold-input" readonly 
+                        data-identifier="Arp.Plc.Eclr/Clibrations1.PV_FeederPosition"
+                        data-nodeid="ns=6;s=Arp.Plc.Eclr/Clibrations1.PV_FeederPosition" />
+                    </div>
+                    <div class="form-group">
+                        <label for="feederSpeed">Feeder Speed (%)</label>
+                        <input type="number" id="feederSpeed" class="form-control form-control-sm bold-input input-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/OutputsProgram.SET_FeederManualSpeed" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_FeederFWD">Forward</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_FeederRWD">Reverse</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_VeeNotch">Vee Notch</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_EndNotch">End Notch</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_Shear">Shear</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_BeltsRun">Belt</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table 1 Group -->
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white">
+                    Table 1
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Sensors</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="ns=6;s=Arp.Plc.Eclr/DI_PartsOnBelts">Belt Part Present</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="ns=6;s=Arp.Plc.Eclr/DI_PartAtGateTable1">Part at Gauge</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_TransfereTableFWD1">Forward</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_TransfereTableRWD1">Reverse</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_Backguage">Block Gauge</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_TransfereTablePushers1">Pusher</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mark Rolls Group -->
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white">
+                    Mark Rolls
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Sensors</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="Home">Home</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="ns=6;s=Arp.Plc.Eclr/DI_MKInLimit">In Limit</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="ns=6;s=Arp.Plc.Eclr/DI_MKOutLimit">Out Limit</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="markHeadPosition">Mark Head Position (inch)</label>
+                        <input type="number" id="markHeadPosition" class="form-control form-control-sm bold-input" readonly data-nodeid="ns=6;s=Arp.Plc.Eclr/Clibrations1.PV_MarkPosition" />
+                    </div>
+                    <div class="form-group">
+                        <label for="markRollsSpeed">Mark Rolls Speed (%)</label>
+                        <input type="number" id="markRollsSpeed" class="form-control form-control-sm bold-input input-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/OutputsProgram.SET_MarkManualSpeed" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_MarkIn">Mark In</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_MarkOut">Mark Out</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_MKMale">MMale</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_MarkFemale">Female</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transfer Table 2 Group -->
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white">
+                    Transfer Table 2
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <button class="btn jog-button btn-sm" data-nodeid="TransferTableRun">Run</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="TransferTableFemaleRoller">Female Roller</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn jog-button btn-sm" data-nodeid="CleatForward">Cleat Forward</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="CleatReverse">Cleat Reverse</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cleat Group -->
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white">
+                    Cleat
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+@*                         <button class="btn jog-button btn-sm" data-nodeid="TransferTableRun">Run</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="TransferTableFemaleRoller">Female Roller</button> *@
+                    </div>
+                    <div class="form-group">
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_CleatRollerFWD">CleatRoller FWD</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_CleatRollerRWD">CleatRoller RWD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Brake Group -->
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white">
+                    Brake
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Sensors</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="BrakePartPresent">Part Present</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="SquaringPins">Squaring Pins</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="BeamUp">Beam Up</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="BeamDown">Beam Down</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="LeafUp">Leaf Up</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sensor-indicator" data-nodeid="LeafDown">Leaf Down</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Position Field -->
+                    <div class="form-group">
+                        <label for="brakePosition">Brake Carriage Position (inch)</label>
+                        <input type="number" id="brakePosition" class="form-control form-control-sm bold-input" readonly data-nodeid="BrakePosition" />
+                    </div>
+                    <div class="form-group">
+                        <label for="feederSpeed">Brake Speed (%)</label>
+                        <input type="number" id="feederSpeed" class="form-control form-control-sm bold-input input-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/OutputsProgram.SET_BrakeManualSpeed" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_ExitBeltRun">Exit</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_BrakeArmUp">Brake Arm Up</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_BrakeBeamDown">Brake Beam Down</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_BrakeBeamUp">Brake Beam Up</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_BrakeIn">Brake In</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_BrakeLeafUp">Brake Leaf Up</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_BrakeLeafDown">Brake Leaf Down</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_BrakeOut">Brake Out</button>
+                        <button class="btn jog-button btn-sm" data-nodeid="ns=6;s=Arp.Plc.Eclr/ManualProgram1.PB_BrakePusher">Brake Pusher</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Styles -->
+<style>
+
+
+
+    
+    .bold-input {
+        font-weight: bold;
+    }
+
+    .sensor-indicator {
+        display: inline-block;
+        padding: 5px 10px;
+        text-align: center;
+        border-radius: 4px;
+        background-color: gray; /* Default: Off */
+        color: white;
+        margin-bottom: 10px;
+        width: auto;
+        min-width: 100px;
+    }
+
+    .jog-button {
+        width: 100px;
+        margin: 2px;
+        background-color: gray; /* Default: Not pressed */
+        color: white;
+        min-height: 50px;
+    }
+
+        .jog-button:active {
+            background-color: green; /* Pressed */
+        }
+
+    .toggle-button {
+        background-color: red; /* Default: Off */
+        color: white;
+        margin: 2px;
+        width: 100px;
+    }
+
+        .toggle-button.active {
+            background-color: green; /* On */
+            color: white;
+        }
+
+    .form-group {
+        margin-bottom: 8px;
+    }
+</style>
+
+@section Scripts {
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/signalr.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            const connection = new signalR.HubConnectionBuilder().withUrl("/realtimehub").build();
+
+            //     connection.on("UpdateVariable", (variable, value) => {
+            //     const identifier = variable.nodeId;
+            //     const element = $(`[data-nodeid='${nodeId}']`);
+
+            //     if (element.length) {
+            //         if (element.is(':input')) {
+            //             element.text(value);
+            //         } else {
+            //             if (value) {
+            //                 element.css('background-color', 'green');
+            //             } else {
+            //                 element.css('background-color', 'red');
+            //             }
+            //         }
+            //     }
+            // });
+
+                   connection.on("UpdateVariable", (variable, value) => {
+                   const identifier = variable.identifier;
+               const element = $(`[data-identifier='${identifier}']`);
+
+               if (element.length) {
+
+          console.log("No mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm dentifier:", identifier);
+               // Check if the value is boolean
+               if (typeof value === 'boolean') {
+                   // Apply font color based on the boolean value
+                   if (value) {
+                           element.css('color', 'green');
+                      // currentValueElement.text("ON"); // Optional: You can show text like "ON"
+                   } else {
+                           element.css('color', 'grey');
+                      // currentValueElement.text("OFF"); // Optional: You can show text like "OFF"
+                   }
+               } else {
+                   // If not boolean, reset the font color and update the text
+                   //currentValueElement.css('color', ''); // Reset to default color
+                       element.css('color', '');
+
+                       element.text(value);
+                           element.val(value);
+                           console.log("No dddddddddddddddddddddddddddddddd dentifier:", value);
+               }
+           } else {
+               console.log("No matching row found for identifier:", identifier);
+           }
+       });
+
+             connection.start()
+                        .then(() => console.log("Connected to RealTimeHub"))
+                        .catch(err => console.error("Connection error:", err.toString()));
+
+            // Dropdown change handler
+            $('#decoilerSelection').on('change', function () {
+                const nodeId = $(this).data('nodeid');
+                const selectedValue = $(this).val();
+
+                $.ajax({
+                    url: '/Main/UpdateJobField', 
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ nodeId: nodeId, value: selectedValue }),
+                    success: function () {
+                        console.log(`Selection updated successfully: ${nodeId} = ${selectedValue}`);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(`Error updating selection: ${nodeId} = ${selectedValue}`, error);
+                    }
+                });
+            });
+
+            $('.input-field').on('change', function () {
+                const nodeId = $(this).data('nodeid');
+                const value = $(this).val();
+
+                $.ajax({
+                    url: '/Main/UpdateJobField',
+                    type: 'POST',
+                    data: { nodeId: nodeId, value: value }, // No JSON.stringify and contentType
+                    success: function () {
+                        console.log(`Job field updated successfully: ${nodeId} = ${value}`);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(`Error updating job field: ${nodeId} = ${value}`, error);
+                    }
+                });
+            });
+
+            // Jog button handlers
+            $('.jog-button').on('mousedown', function () {
+                const nodeId = $(this).data('nodeid');
+                sendJogCommand(nodeId, true);
+            });
+
+            $('.jog-button').on('mouseup', function () {
+                const nodeId = $(this).data('nodeid');
+                sendJogCommand(nodeId, false);
+            });
+
+            function sendJogCommand(nodeId, jogStatus) {
+                $.ajax({
+                    url: '/Maintenance/JogCommand',
+                    type: 'POST',
+                    data: { nodeId: nodeId, jogStatus: jogStatus },
+                    success: function () {
+                        console.log("Jog command sent successfully:", nodeId, jogStatus);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error sending jog command:", error);
+                    }
+                });
+            }
+        });
+
+    </script>
+}

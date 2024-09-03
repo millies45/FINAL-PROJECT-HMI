@@ -1,0 +1,440 @@
+﻿@{
+    ViewData["Title"] = "Main";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<style>
+    .container-main {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .table-container {
+        flex: 1;
+        max-width: 75%; /* Adjust table container width */
+        overflow-x: auto;
+    }
+
+    .button-panel {
+        max-width: 40%; /* Adjust button panel width */
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .button-panel .btn {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+            .button-panel .btn:last-child {
+                margin-bottom: 0;
+            }
+
+    .table th,
+    .table td {
+        padding: 4px 8px;
+        vertical-align: middle;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .table th {
+        position: sticky;
+        top: 0;
+        background-color: #f8f9fa;
+        z-index: 2;
+    }
+
+    thead th:first-child,
+    tbody td:first-child {
+        position: sticky;
+        left: 0;
+        background-color: #f8f9fa;
+        z-index: 3;
+    }
+
+    .btn-style {
+        max-width:180px;
+    }
+</style>
+
+<div class="container-main">
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 120px;" class="parameter-column">Job No.</th>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <th style="width: 100px;" class="job-column">@i</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="parameter-column">Quantity</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column"><input style="width: 100px;" type="number" class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].Quantity" /></td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Side A</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column"><input type="number" class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].SideA" /></td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Side B</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column"><input type="number" class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].SideB" /></td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Duct Type</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column">
+                                <select class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].DuctType">
+                                    <option value="1">Sheet</option>
+                                    <option value="2">Single</option>
+                                    <option value="3">L</option>
+                                    <option value="4">U</option>
+                                    <option value="5">Wrap</option>
+                                </select>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Lock</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column">
+                                <select class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].Lock">
+                                    <option value="1">Pitts</option>
+                                    <option value="2">Snap</option>
+                                </select>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Connector</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column">
+                                <select class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].Connector">
+                                    <option value="1">TDC</option>
+                                    <option value="2">S&D</option>
+                                    <option value="3">Raw</option>
+                                    <option value="4">Other 1</option>
+                                    <option value="5">Other 2</option>
+                                </select>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Cleats</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column">
+                                <select class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].Cleats">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Cleat Edges</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column">
+                                <select class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].CleatEdges">
+                                    <option value="1">Left</option>
+                                    <option value="2">Right</option>
+                                    <option value="3">Both</option>
+                                </select>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Side A Holes</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+
+                            <td class="job-column"><input type="number" class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].SideAHoles" /></td>
+
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Side B Holes</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            @* ns = 6; s = Arp.Plc.Eclr/Main1.A_Recipes[0].Bead *@
+                            <td class="job-column"><input type="number" class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].SideBHoles" /></td>
+
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Hole Die</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+
+                            <td class="job-column"><input type="number" class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].HoleDie" /></td>
+
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Hole Size</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+
+                            <td class="job-column"><input type="number" class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].HoleSize" /></td>
+
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Bead</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column"><input type="number" class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[0].Bead" /></td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Insulation</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column">
+                                <select class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].Insulation">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Pin Spacing</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column"><input type="number" class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].PinSpacing" /></td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Sealant</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column">
+                                <select class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].Sealant">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="parameter-column">Gauge</td>
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <td class="job-column">
+                                <select class="form-control form-control-sm job-field" data-nodeid="ns=6;s=Arp.Plc.Eclr/Main1.A_Recipes[@i].Gauge">
+                                    <option value="1">16</option>
+                                    <option value="2">18</option>
+                                    <option value="3">20</option>
+                                    <option value="4">22</option>
+                                    <option value="5">24</option>
+                                    <option value="6">26</option>
+                                    <option value="7">28</option>
+                                    <option value="8">30</option>
+                                    <option value="9">Other 1</option>
+                                    <option value="10">Other 2</option>
+                                </select>
+                            </td>
+                        }
+                    </tr>
+                    <!-- Add more rows for additional parameters as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="button-panel" style="display: flex; align-items: center;">
+
+        <div class="button-panel">
+        <button class="btn btn-secondary btn-style" data-nodeid="MKHomeNodeId" style="margin-right: 10px;">MK Home</button>
+        <button class="btn btn-secondary btn-style" data-nodeid="Brake">Brake Home</button>
+        <button class="btn btn-secondary btn-style jog-button" data-nodeid="ns=6;s=Arp.Plc.Eclr/PB_FeederHydrulic">Feeder Hyd</button> @* Feeder hydrulic pump *@
+        <button class="btn btn-secondary btn-style" data-nodeid="FeedInitiate">Xfer Table 1</button>
+        <button class="btn btn-secondary btn-style" data-nodeid="BatchAuto">MK Rolls</button>
+        <button class="btn btn-secondary btn-style" data-nodeid="RunMode">Cross Brake</button>
+        <button class="btn btn-secondary btn-style" data-nodeid="BatchInactive">Xfere Table 2</button>
+        <button class="btn btn-secondary btn-style" data-nodeid="DecoilerAuto">Brake Hyd</button>
+        <button class="btn btn-secondary btn-style" data-nodeid="AutoPartEject">Exit</button>
+        <button class="btn btn-secondary btn-style" data-nodeid="AutoPartEject">Exit</button>
+      
+        </div>
+        <div class="button-panel">
+        <div class="form-group" >
+                <div class="form-group" style="margin-bottom:10px;">
+                    <div class="form-group">
+                        <label for="feederSpeed">MK Set For job:</label>
+                        <input type="number" id="brakePosition" class="form-control form-control-sm bold-input" readonly data-nodeid="BrakePosition" />
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom:200px;">
+                    <div class="form-group">
+                        <label for="feederSpeed">Brake Set For job:</label>
+                        <input type="number" id="brakePosition" class="form-control form-control-sm bold-input" readonly data-nodeid="BrakePosition" />
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom:200px;">
+                    <div class="form-group">
+                        <label for="feederSpeed">MK Speed:</label>
+                        <input type="number" id="brakePosition" class="form-control form-control-sm bold-input" readonly data-nodeid="BrakePosition" />
+                    </div>
+                </div>
+                @* Space *@
+
+            </div>
+        </div>
+@*         <div class="button-panel">
+            <div class="form-group">
+                <div class="form-group" style="margin-bottom:50px;">
+                    <div class="form-group">
+                        <label for="feederSpeed">Feeder Encoder:</label>
+                        <input type="number" id="brakePosition" class="form-control form-control-sm bold-input" readonly data-nodeid="BrakePosition" />
+                    </div>
+                </div>
+                @* space 
+                <div class="form-group" style="margin-bottom:150px;">
+                    <label for="feederSpeed">Brake Encoder:</label>
+                    <input type="number" id="brakePosition" class="form-control form-control-sm bold-input" readonly data-nodeid="BrakePosition" />
+                </div>
+            </div>
+            </div> *@
+    </div>
+
+
+</div>
+
+
+@section Scripts {
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/signalr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // SignalR connection setup
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("/realtimehub")
+                .build();
+
+
+
+         connection.start()
+                    .then(() => console.log("Connected to RealTimeHub"))
+                    .catch(err => console.error("Connection error:", err.toString()));
+
+            connection.on("UpdateVariable", (variable, value) => {
+                const identifier = variable.nodeId;
+                const row = $(`tr[data-name='${identifier}']`);
+
+                if (row.length) {
+                    const currentValueElement = row.find('.real-time-value');
+
+                    // Check if the value is boolean
+                    if (typeof value === 'boolean') {
+                        // Apply font color based on the boolean value
+                        if (value) {
+                            currentValueElement.css('color', 'green');
+                           // currentValueElement.text("ON"); // Optional: You can show text like "ON"
+                        } else {
+                            currentValueElement.css('color', 'grey');
+                           // currentValueElement.text("OFF"); // Optional: You can show text like "OFF"
+                        }
+                    } else {
+                        // If not boolean, reset the font color and update the text
+                        //currentValueElement.css('color', ''); // Reset to default color
+                        currentValueElement.text(value);
+                    }
+                } else {
+                    console.warn("No matching row found for identifier:", identifier);
+                }
+            });
+
+            connection.start()
+                .then(function () {
+                    console.log("Connected to RealTimeHub");
+                })
+                .catch(function (err) {
+                    return console.error(err.toString());
+                });
+
+            $('.job-field').on('change', function () {
+                const nodeId = $(this).data('nodeid');
+                const value = $(this).val();
+
+                $.ajax({
+                    url: '/Main/UpdateJobField',
+                    type: 'POST',
+                    data: { nodeId: nodeId, value: value }, // No JSON.stringify and contentType
+                    success: function () {
+                        console.log(`Job field updated successfully: ${nodeId} = ${value}`);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(`Error updating job field: ${nodeId} = ${value}`, error);
+                    }
+                });
+            });
+                    // Jog button handlers
+                $('.jog-button').on('mousedown', function () {
+                    const nodeId = $(this).data('nodeid');
+                    sendJogCommand(nodeId, true);
+                });
+
+                $('.jog-button').on('mouseup', function () {
+                    const nodeId = $(this).data('nodeid');
+                    sendJogCommand(nodeId, false);
+                });
+
+                function sendJogCommand(nodeId, jogStatus) {
+                    $.ajax({
+                        url: '/Maintenance/JogCommand',
+                        type: 'POST',
+                        data: { nodeId: nodeId, jogStatus: jogStatus },
+                        success: function () {
+                            console.log("Jog command sent successfully:", nodeId, jogStatus);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error sending jog command:", error);
+                        }
+                    });
+                }
+            });
+
+        //     $('.btn-primary').on('click', function () {
+        //         const nodeId = $(this).data('nodeid');
+        //         $.ajax({
+        //             url: '/Main/JogCommand',
+        //             type: 'POST',
+        //             data: { nodeId: nodeId, value: true },
+        //             success: function () {
+        //                 console.log(`Command sent successfully: ${nodeId}`);
+        //             },
+        //             error: function (xhr, status, error) {
+        //                 console.error(`Error sending command: ${nodeId}`, error);
+        //             }
+        //         });
+        //     });
+        // });
+    </script>
+}

@@ -1,0 +1,97 @@
+﻿@model PrecisionFullCoilHMI.Models.Tag
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Tag</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="NodeId" class="control-label"></label>
+                <input asp-for="NodeId" class="form-control" />
+                <span asp-validation-for="NodeId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Subscribe" /> @Html.DisplayNameFor(model => model.Subscribe)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Definition" class="control-label"></label>
+                <select asp-for="Definition" class="form-control" asp-items="ViewBag.DefinitionOptions">
+                    <option value="">Select Definition</option>
+                </select>
+                <span asp-validation-for="Definition" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UnitOfMeasurement" class="control-label"></label>
+                <input asp-for="UnitOfMeasurement" class="form-control" />
+                <span asp-validation-for="UnitOfMeasurement" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsArray" type="checkbox" /> Is Array
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ArrayStart" class="control-label"></label>
+                <input asp-for="ArrayStart" class="form-control" />
+                <span asp-validation-for="ArrayStart" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ArrayEnd" class="control-label"></label>
+                <input asp-for="ArrayEnd" class="form-control" />
+                <span asp-validation-for="ArrayEnd" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MaintenancePurpose" class="control-label"></label>
+                <select asp-for="MaintenancePurpose" class="form-control" asp-items="ViewBag.MaintenancePurposeOptions">
+                    <option value="">Select Maintenance Purpose</option>
+                </select>
+                <span asp-validation-for="MaintenancePurpose" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" style="margin: 10px; margin-top:20px">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="margin: 10px">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PrecisionFullCoilHMI.Models.Recipe>
+
+<h1>Recipes</h1>
+<button class="btn btn-success" id="createRecipeButton">Create New Recipe</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Created By</th>
+            <th>Last Updated</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Model)
+        {
+            <tr>
+                <td>@recipe.Name</td>
+                <td>@recipe.Description</td>
+                <td>@recipe.UserId</td> <!-- You can replace this with the actual user name if needed -->
+                <td>@recipe.LastUpdateDate</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-primary">View Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        document.getElementById("createRecipeButton").addEventListener("click", function () {
+            if (confirm("Are you sure you want to create a new recipe?")) {
+                window.location.href = '@Url.Action("CreateAndEdit", "Recipe")';
+            }
+        });
+    </script>
+}
